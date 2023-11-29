@@ -2,12 +2,16 @@ import logging
 import argparse
 from src.constants import LOGS_PATH, LOGGER_NAME, CLIENTS_DATA_RAW_PATH, DETAILS_DATA_RAW_PATH
 from logging.handlers import RotatingFileHandler
-
+import os
+from pyspark.sql import DataFrame
 
 class Utils:
     @staticmethod
-    def parse_args():
-        """Parse user input"""
+    def parse_args() -> argparse.Namespace:
+        """Parse user input
+        :return: Namespace
+        """
+
         parser = argparse.ArgumentParser()
         parser.add_argument("--src-clients-path", help="Path to src clients personal raw_data csv",
                             type=str, default=CLIENTS_DATA_RAW_PATH)
@@ -20,8 +24,10 @@ class Utils:
         return args
 
     @staticmethod
-    def initialise_logger():
-        """Initialise a rotating logger"""
+    def initialise_logger() -> logging.Logger:
+        """Initialise a rotating logger
+        :return: Logger
+        """
         handler = logging.handlers.RotatingFileHandler(
             filename=LOGS_PATH,
             mode='a',
@@ -35,3 +41,27 @@ class Utils:
         logger.addHandler(handler)
 
         return logger
+
+    @staticmethod
+    def do_path_exist(path: str) -> bool:
+        """Check if file under the path exists.
+
+        :param path: str - path to the csv file
+        :return: bool
+        """
+        return os.path.exists(path)
+
+    @staticmethod
+    def validate_df_schema(df: DataFrame, schema: DataFrame.schema) -> bool:
+        """
+
+        :param df: DataFrame used for validation
+        :param schema: expected schema
+        :return: bool
+        """
+        return df.schema == schema
+
+
+    # def is_csv_correct():
+    #     _, file_ext = os.path.splitext(path)
+    #     and file_ext == 'csv'
