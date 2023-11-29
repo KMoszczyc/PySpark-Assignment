@@ -1,9 +1,12 @@
 import logging
 import argparse
-from src.constants import LOGS_PATH, LOGGER_NAME, CLIENTS_DATA_RAW_PATH, DETAILS_DATA_RAW_PATH
-from logging.handlers import RotatingFileHandler
 import os
+import re
+import sys
+
+from logging.handlers import RotatingFileHandler
 from pyspark.sql import DataFrame
+from src.constants import LOGS_PATH, LOGGER_NAME, CLIENTS_DATA_RAW_PATH, DETAILS_DATA_RAW_PATH
 
 class Utils:
     @staticmethod
@@ -19,7 +22,11 @@ class Utils:
                             type=str, default=DETAILS_DATA_RAW_PATH)
         parser.add_argument("--countries", help="A list of countries for filtering raw_data",
                             nargs='+', default=['Netherlands', 'United Kingdom'])
-        args = parser.parse_args()
+
+        if re.search('pytest', sys.argv[0]):
+            args = parser.parse_args([])
+        else:
+            args = parser.parse_args(sys.argv[1:])
 
         return args
 

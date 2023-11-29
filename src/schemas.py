@@ -1,5 +1,6 @@
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType
 from enum import Enum
+
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType
 
 
 class SchemaID(Enum):

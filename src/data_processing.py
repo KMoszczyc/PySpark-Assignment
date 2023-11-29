@@ -1,18 +1,17 @@
-from pyspark.sql import SparkSession
+from pyspark.sql import SparkSession, DataFrame
 from pyspark.sql.functions import col
+from pyspark.sql.utils import AnalysisException
+
 from src.utils import Utils
-from pyspark.sql import DataFrame
-from src.constants import OUTPUT_PATH
-from pyspark.sql.utils import AnalysisException, ParseException
-import pandas as pd
-from src.schemas import client_schema, details_schema, SchemaID, schema_map
+from src.constants import OUTPUT_PATH, SPARK_APP_NAME
+from src.schemas import SchemaID, schema_map
 from src.exceptions import IncorrectSchemaException
 
 
 class DataProcessing:
     def __init__(self):
         self.spark = (SparkSession.builder.master("local[1]")
-                      .appName("DataProcessingApp")
+                      .appName(SPARK_APP_NAME)
                       .getOrCreate())
         self.logger = Utils.initialise_logger()
         self.args = Utils.parse_args()
