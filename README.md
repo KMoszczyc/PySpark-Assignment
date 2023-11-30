@@ -31,3 +31,17 @@ python main.py --src-clients-path raw_data/dataset_one.csv --src-details-path ra
 ### Output data schema (output path: client_data/output.csv):
 |client_identifier|email|country|bitcoin_address|credit_card_type|
 |-----------------|-----|-------|---------------|----------------|
+
+
+### Example logs after one run
+```
+30-11-2023 14:43:27 - INFO - =======================================================================================
+30-11-2023 14:43:32 - INFO - Loaded: raw_data/dataset_one.csv with 1000 records
+30-11-2023 14:43:32 - INFO - Loaded: raw_data/dataset_two.csv with 1000 records
+30-11-2023 14:43:32 - INFO - Rows: ['Netherlands', 'United Kingdom'] in column: country removed, resulting in row's change: 1000 -> 100
+30-11-2023 14:43:32 - INFO - Columns dropped: first_name, last_name
+30-11-2023 14:43:32 - INFO - Columns dropped: cc_n
+30-11-2023 14:43:32 - INFO - DataFrames joined on id, using inner join
+30-11-2023 14:43:32 - INFO - Renamed columns: id -> client_identifier, btc_a -> bitcoin_address, cc_t -> credit_card_type
+30-11-2023 14:43:33 - INFO - DataFrame saved to: C:\Users\kmoszczy\Desktop\Python\PySpark-Assignment\client_data/output.csv
+```
