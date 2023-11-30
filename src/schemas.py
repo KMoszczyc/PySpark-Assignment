@@ -1,9 +1,10 @@
 from enum import Enum
 
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType
+from pyspark.sql.types import StructType, StructField, StringType
 
 
 class SchemaID(Enum):
+    """Enum for validating loaded dataframes on specific schemas"""
     CLIENT = 1
     DETAILS = 2
 
