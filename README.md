@@ -15,4 +15,19 @@ python main.py --src-clients-path raw_data/dataset_one.csv --src-details-path ra
 python main.py --src-clients-path raw_data/dataset_one.csv --src-details-path raw_data/dataset_two.csv --countries "Netherlands" "United Kingdom"
 ```
 
-### Result:
+### Input data schemas:
+- Client data schema (specified with: --src-clients-path, default path: raw_data/dataset_one.csv):
+  
+  |id|first_name|last_name|email|country|
+  |--|----------|---------|-----|-------|
+
+- Financial client details(specified with: --src-details-path, default path: raw_data/dataset_two.csv):
+  
+  |id|btc_a|cc_t|cc_n|
+  |--|-----|----|----|
+
+- Country names surrounded by quotation marks and seperated by spaces (--countries): 
+  
+### Output data schema (output path: client_data/output.csv):
+|client_identifier|email|country|bitcoin_address|credit_card_type|
+|-----------------|-----|-------|---------------|----------------|
