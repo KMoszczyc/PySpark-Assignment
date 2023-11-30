@@ -15,7 +15,6 @@ class DataProcessing:
                       .getOrCreate())
         self.logger = Utils.initialise_logger()
         self.args = Utils.parse_args()
-        print(self.args)
         self.logger.info('=======================================================================================')
 
     def load_data(self, src_path: str, schema_id: SchemaID) -> DataFrame:
