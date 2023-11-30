@@ -6,9 +6,13 @@ import sys
 
 from logging.handlers import RotatingFileHandler
 from pyspark.sql import DataFrame
+
 from src.constants import LOGS_PATH, LOGGER_NAME, CLIENTS_DATA_RAW_PATH, DETAILS_DATA_RAW_PATH
 
+
 class Utils:
+    """Class with utility functions such as arg parsing, logging or schema validation."""
+
     @staticmethod
     def parse_args() -> argparse.Namespace:
         """Parse user input
@@ -67,8 +71,3 @@ class Utils:
         :return: bool
         """
         return df.schema == schema
-
-
-    # def is_csv_correct():
-    #     _, file_ext = os.path.splitext(path)
-    #     and file_ext == 'csv'
